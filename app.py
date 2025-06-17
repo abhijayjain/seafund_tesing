@@ -8,15 +8,15 @@ from openai import OpenAI
 import base64
 import pandas as pd
 
-# Setup Groq-compatible OpenAI client
+
 client = OpenAI(
-    api_key="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",  # Replace with your actual Groq API key
+    api_key="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",  
     base_url="https://api.groq.com/openai/v1"
 )
 
 nlp = spacy.load("en_core_web_sm")
 
-# Initialize session state
+
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 if "memo_generated" not in st.session_state:
@@ -29,7 +29,7 @@ if "user_company_name" not in st.session_state:
     st.session_state.user_company_name = None
 
 st.set_page_config(layout="wide")
-st.title("📄 AI Investor Memo Generator (Groq + Web Simulation)")
+st.title("📄 AI Executive Summary Generator")
 
 if not st.session_state.user_company_name:
     with st.form("company_form"):
@@ -369,7 +369,7 @@ if st.session_state.memo_generated:
                 st.markdown(f"**{role}:** {msg['content']}")
 
     with tab4:
-        st.subheader("📋 In-Depth AI-Filled Executive Summary Table (with Links)")
+        st.subheader("📋 AI-Filled Executive Summary Table")
         df = build_summary_table()
         if df.iloc[0]["Section"] == "Error":
             st.error("There was an error generating the summary table.")
